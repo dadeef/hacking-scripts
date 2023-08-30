@@ -1,0 +1,14 @@
+#!/bin/bash
+PATH_TO_DIRSEARCH=~/Repos/dirsearch
+nmap_scan() {
+    nmap $DOMAIN > $DIRECTORY/nmap
+    echo "The results of the nmap scan have been saved to $DIRECTORY/nmap."
+}
+dirsearch_scan() {
+    $PATH_TO_DIRSEARCH/dirsearch.py -u $DOMAIN --format plain -o $DIRECTORY/dirsearch
+    echo "The results of the dirsearch scan have been saved to $DIRECTORY/dirsearch."
+}
+crt_scan() {
+    curl "https://crt.sh/?q=$DOMAIN&output=json" -o $DIRECTORY/crt
+    echo "The results of the crt scan have been saved to $DIRECTORY/crt."
+}
